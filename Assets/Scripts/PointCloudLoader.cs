@@ -80,9 +80,7 @@ public class PointCloudLoader : MonoBehaviour
     void OnRenderObject()
     {
         if (bufferReady)
-        {
-            // レンダリングのたびに頂点の個数分シェーダーを実行
-            // MeshTopology.Pointsを指定することで、面ではなく頂点が描画される            
+        {            
             material.SetPass(0);
             Graphics.DrawProceduralNow(MeshTopology.Points, pts.Count);
         }

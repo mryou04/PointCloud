@@ -9,8 +9,6 @@ public static class PtsReader
     {
         var content = ptsfile.text;
 
-        // テキストファイルの読み込みとパースがボトルネックなのでいずれ最適化したい
-        // 現状はとりあえず非同期読み込みにしてメインスレッドがブロックされることを回避
         return await Task.Run(() =>
             content.Split('\n').Where(s => s != "").Select(parseRow).ToList()
         );
@@ -22,7 +20,7 @@ public static class PtsReader
 
         return (new Vector3(
             splitted[0],
-            splitted[2], // PTSファイルは通常Z-upなので、ここでZとYを交換しY-upに変換
+            splitted[2],
             splitted[1]
         ), new Vector3(
             splitted[3],
